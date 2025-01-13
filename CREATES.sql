@@ -2,10 +2,10 @@ CREATE TABLE UNIDADE (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     endereco TEXT,
-    uf varchar(2),
+    uf CHAR(2),
     cidade TEXT,
     pais varchar(20),
-    telefone varchar(12)
+    telefone varchar(15)
 );
 
 CREATE TABLE PLANO (
@@ -29,11 +29,11 @@ CREATE TABLE CARGO(
 CREATE TABLE IDENTIFICACAO (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
-    cpf CHAR(11) NOT NULL,
+    cpf CHAR(11) NOT NULL UNIQUE,
     unidade_id int,
     data_nascimento DATE,
     endereco VARCHAR(200),
-    telefone VARCHAR(20)
+    telefone VARCHAR(15)
 );
 
 CREATE TABLE IDENTIFICADOR(
