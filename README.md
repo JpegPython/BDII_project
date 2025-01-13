@@ -2,10 +2,7 @@
 
 Projeto da Disciplina de Banco de Dados II na Universidade Federal Fluminense.
 
-Integrantes do projeto:
--Dawson Oliveira
--Higor Luiz da Silva
--João Pedro Souza
+Integrantes do projeto: *Dawson Oliveira, Higor Luiz da Silva, João Pedro Souza*
 
 Nosso projeto visa implementar um banco de dados com tema livre com as seguintes configurações:
 
