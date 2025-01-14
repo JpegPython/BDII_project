@@ -10,23 +10,19 @@ WHERE NOT EXISTS (
       AND hp.data_vencimento < CURDATE()
 );
 
+# select * from alunos_ativos;
+-- VIEW que retorna os alunos e seus planos de treino descritos detalhadamente
 CREATE VIEW planos_com_exercicios AS
-SELECT 
-    a.id AS aluno_id,
-    a.identificador_id,
-    a.plano_id,
-    pt.id AS plano_treino_id,
-    pt.repeticoes,
-    pt.series,
-    pt.carga,
-    e.id AS exercicio_id,
-    e.nome AS nome_exercicio,
-    e.descricao AS descricao_exercicio
-FROM 
-    ALUNO a
-JOIN 
-    PLANO_TREINO pt ON a.plano_treino_id = pt.id
-JOIN 
-    EXECUTA_EM ee ON pt.id = ee.TreinoID
-JOIN 
-    EXERCICIO e ON ee.ExercicioID = e.id;
+SELECT a.id,IDENTIFICACAO.nome as nome_aluno, EXERCICIO.nome AS nome_exercicio,
+       EXERCICIO.descricao AS descricao_exercicio, pt.repeticoes, pt.series,pt.carga,
+       EQUIPAMENTO.nome, gp.nome as nome_aparelho FROM ALUNO a
+JOIN IDENTIFICADOR on a.identificador_id = IDENTIFICADOR.id
+JOIN IDENTIFICACAO ON IDENTIFICADOR.identificacao_id = IDENTIFICACAO.id
+JOIN PLANO_TREINO pt ON a.id = pt.id
+JOIN EXERCICIO ON pt.id = EXERCICIO.id
+JOIN EQUIPAMENTO ON EXERCICIO.equipamento_id = EQUIPAMENTO.id
+JOIN GRUPO_MUSCULAR gp ON EXERCICIO.grupo_muscular_id = gp.id
+ORDER BY a.id;
+
+
+# select * from planos_com_exercicios

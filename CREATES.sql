@@ -1,4 +1,4 @@
-USE academia;
+USE sakila;
 CREATE TABLE UNIDADE (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
@@ -15,7 +15,7 @@ CREATE TABLE PLANO (
     descricao TEXT,
     preco_mensal DECIMAL(10, 2),
     fidelidade INT,
-    unidade_id int,
+    unidade_id int not null,
     FOREIGN KEY (unidade_id) REFERENCES UNIDADE(id)
 
 );
@@ -31,7 +31,7 @@ CREATE TABLE IDENTIFICACAO (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     cpf CHAR(11) NOT NULL UNIQUE,
-    unidade_id int,
+#     unidade_id int, redundante
     data_nascimento DATE,
     endereco VARCHAR(200),
     telefone VARCHAR(15)
@@ -39,25 +39,25 @@ CREATE TABLE IDENTIFICACAO (
 
 CREATE TABLE IDENTIFICADOR(
     id INT AUTO_INCREMENT PRIMARY KEY,
-    identificacao_id int,
+    identificacao_id int not null,
     ativo bool,
     FOREIGN KEY (identificacao_id) REFERENCES IDENTIFICACAO(id)
 );
 
 CREATE TABLE FUNCIONARIO (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    identificador_id int,
+    identificador_id int not null,
     data_contratacao DATE,
-    cargo_id int,
+    cargo_id int not null,
     FOREIGN KEY (identificador_id) REFERENCES IDENTIFICADOR(id),
     FOREIGN KEY (cargo_id) REFERENCES CARGO(id)
 );
 
 CREATE TABLE ALUNO (
     id INT PRIMARY KEY,
-    identificador_id int,
+    identificador_id int not null,
     data_cadastro DATE,
-    plano_id int,
+    plano_id int not null,
     FOREIGN KEY (identificador_id) REFERENCES IDENTIFICADOR(id),
     FOREIGN KEY (plano_id) REFERENCES PLANO(id)
 );
@@ -78,15 +78,15 @@ CREATE TABLE EXERCICIO (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     descricao TEXT,
-    equipamento_id int,
-    grupo_muscular_id int,
+    equipamento_id int not null,
+    grupo_muscular_id int not null,
     FOREIGN KEY (equipamento_id) REFERENCES EQUIPAMENTO(id),
     FOREIGN KEY (grupo_muscular_id) REFERENCES GRUPO_MUSCULAR(id)
 );
 
 CREATE TABLE PLANO_TREINO (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    exercicio_id INT,
+    exercicio_id INT NOT NULL,
     repeticoes INT,
     series INT,
     carga INT,
@@ -100,15 +100,15 @@ CREATE TABLE HISTORICO_TREINO (
     id INT AUTO_INCREMENT PRIMARY KEY ,
     data_inicio DATETIME,
     data_fim DATETIME,
-    plano_treino_id int,
+    plano_treino_id int NOT NULL,
     FOREIGN KEY (plano_treino_id) REFERENCES PLANO_TREINO(id)
 );
 
 CREATE TABLE RESERVA (
     id INT AUTO_INCREMENT PRIMARY KEY,
     data DATETIME,
-    plano_treino_id INT,
-    instrutor_id INT,
+    plano_treino_id INT NOT NULL,
+    instrutor_id INT NOT NULL,
     FOREIGN KEY (plano_treino_id) REFERENCES PLANO_TREINO(id),
     FOREIGN KEY (instrutor_id) REFERENCES FUNCIONARIO(id)
 );
@@ -129,8 +129,8 @@ CREATE TABLE HISTORICO_AVALIACAO(
     gordura_corporal DECIMAL(10,2),
     musculo_esqueletico DECIMAL(10,2),
     tipo_dieta varchar(20),
-    aluno_id int,
-    funcionario_id int,
+    aluno_id int NOT NULL,
+    funcionario_id int NOT NULL,
     FOREIGN KEY (aluno_id) REFERENCES ALUNO(id),
     FOREIGN KEY (funcionario_id) REFERENCES FUNCIONARIO(id)
 )

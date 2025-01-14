@@ -23,12 +23,12 @@ b. Fragmentação de tabelas
 Nosso projeto então será o sistema de uma academia.
 
 Representação do mini mundo:
-1. Todas as pessoas possuem apenas 1 identificação. 
+1. Todas as pessoas possuem apenas uma identificação. 
 2. Uma identificação pode ter diversos identificadores  
-a. Ex: Aluno pode também ser um funcionário, nesse caso havendo 
-dois identificadores (para aluno e para funcionários) que 
+a. Ex: Um aluno pode também ser um funcionário, nesse caso havendo 
+dois identificadores (para um aluno e um para funcionários) que 
 conteriam a mesma identificação 
-3. Funcionário possuem 1 ou mais cargos ( 1 identificador por cargo) 
+3. Funcionários possuem um ou mais cargos ( um identificador por cargo) 
 4. Cada plano possui uma ou mais unidades 
 5. Um aluno pode reservar aula com um funcionário instrutor se o 
 plano permitir 

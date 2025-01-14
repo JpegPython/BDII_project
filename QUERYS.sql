@@ -28,9 +28,8 @@ WHERE gm.nome = 'Peitoral';
 -- 4. Buscar a quantidade de alunos cadastrados em cada unidade
 SELECT u.nome AS unidade, COUNT(a.id) AS total_alunos
 FROM UNIDADE u
-JOIN IDENTIFICACAO i ON u.id = i.unidade_id
-JOIN IDENTIFICADOR idf ON i.id = idf.identificacao_id
-JOIN ALUNO a ON idf.id = a.identificador_id
+JOIN PLANO p on u.id = p.unidade_id
+JOIN ALUNO a ON p.id = a.plano_id
 GROUP BY u.nome;
 
 
