@@ -24,9 +24,9 @@ BEGIN
         SELECT 1 
         FROM HISTORICO_PAGAMENTO 
         WHERE aluno_id = OLD.id AND data_pagamento IS NULL
-    ) THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Não é permitido excluir um aluno com pagamentos pendentes.';
+    )THEN
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'Não é permitido excluir um aluno com pagamentos pendentes.';
     END IF;
 END;
 
