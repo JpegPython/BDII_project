@@ -6,20 +6,21 @@ INSERT INTO UNIDADE (id, nome, endereco, uf, cidade, pais, telefone) VALUES
 
 
 -- Tabela PLANO
-INSERT INTO PLANO (id, nome, descricao, preco_mensal, fidelidade, unidade_id) VALUES 
-(1, 'Plano Basic', 'Acesso limitado', 99.90, 1, 1),
-(2, 'Plano Premium', 'Acesso ilimitado', 199.90, 12, 1),
-(3, 'Plano Família', 'Até 4 dependentes', 299.90, 2, 2),
-(4, 'Plano Super Premium', 'Acesso ilimitado e direito a Instrutor e Nutri', 250.00, 12, 1), 
-(5, 'Plano Basic', 'Acesso limitado', 50.00, 1, 2);
+INSERT INTO PLANO (nome, descricao, preco_mensal, fidelidade, unidade_id) VALUES 
+('Plano Basic', 'Apenas 1 acesso ', 50.00, 1, 2),
+('Plano Basic+', 'Acesso limitado', 99.90, 1, 1),
+('Plano Premium', 'Acesso ilimitado', 199.90, 12, 1),
+('Plano Família', 'Até 4 dependentes', 299.90, 2, 2),
+('Plano Super Premium', 'Acesso ilimitado e direito a Instrutor e Nutri', 250.00, 12, 1);
+
 
 
 -- Tabela CARGO
-INSERT INTO CARGO (id, nome, descricao, salario) VALUES 
-(1, 'Instrutor', 'Responsável por ministrar aulas', 3000.00),  
-(2, 'Recepcionista', 'Atendimento ao público', 1500.00),
-(3, 'Gerente', 'Gerenciamento geral', 5000.00),
-(4, 'Nutricionista', 'Responsável pela avaliação corporal dos alunos', 3200.00);
+INSERT INTO CARGO (nome, descricao, salario) VALUES 
+('Instrutor', 'Responsável por ministrar aulas', 3000.00),  
+('Recepcionista', 'Atendimento ao público', 1500.00),
+('Gerente', 'Gerenciamento geral', 5000.00),
+('Nutricionista', 'Responsável pela avaliação corporal dos alunos', 3200.00);
 
 
 -- Tabela IDENTIFICACAO
@@ -507,8 +508,17 @@ INSERT INTO HISTORICO_PAGAMENTO (data_pagamento, valor, data_vencimento, metodo_
 ('2021-07-12', 250.00, '2021-07-17', 'Cartão', 45),
 ('2021-06-15', 199.90, '2021-06-20', 'Boleto', 46),
 ('2021-05-18', 99.90, '2021-05-23', 'Pix', 47),
-('2021-04-21', 299.90, '2021-04-26', 'Cartão', 48);
+('2021-04-21', 299.90, '2021-04-26', 'Cartão', 48),
+('2024-12-18', 99.90, '2025-02-23', 'Pix', 47),
+('2024-08-15', 199.90, '2025-01-20', 'Cartão', 7);
 
+
+-- Tabela HISTORICO_PAGAMENTO (valores atrasados e vencidos
+INSERT INTO  HISTORICO_PAGAMENTO (valor, data_vencimento, metodo_pagamento, aluno_id) VALUES
+(99.90, '2025-01-10', 'Boleto', 2),
+(299.90, '2024-12-31', 'PIX', 23),
+(99.90, '2025-02-23', 'Pix', 47),
+(199.90, '2025-01-20', 'Cartão', 7);
 
 -- Tabela HISTORICO_AVALIACAO
 INSERT INTO HISTORICO_AVALIACAO (peso, gordura_corporal, musculo_esqueletico, tipo_dieta, aluno_id, funcionario_id) VALUES

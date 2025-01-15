@@ -54,7 +54,7 @@ CREATE TABLE FUNCIONARIO (
 );
 
 CREATE TABLE ALUNO (
-    id INT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
     identificador_id int not null,
     data_cadastro DATE,
     plano_id int not null,

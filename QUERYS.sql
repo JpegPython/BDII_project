@@ -6,7 +6,8 @@ JOIN IDENTIFICACAO i ON idf.identificacao_id = i.id
 JOIN PLANO p ON a.plano_id = p.id
 JOIN PLANO_TREINO pt ON a.id = pt.aluno_id
 JOIN EXERCICIO e ON pt.exercicio_id = e.id
-WHERE idf.ativo = true;
+WHERE idf.ativo = true
+ORDER BY i.nome;
 
 
 -- 2. Buscar os instrutores responsáveis por reservas de treinos em um período específico
