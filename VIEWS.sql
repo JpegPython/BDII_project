@@ -15,7 +15,7 @@ WHERE NOT EXISTS (
 CREATE VIEW planos_com_exercicios AS
 SELECT a.id,IDENTIFICACAO.nome as nome_aluno, EXERCICIO.nome AS nome_exercicio,
        EXERCICIO.descricao AS descricao_exercicio, pt.repeticoes, pt.series,pt.carga,
-       EQUIPAMENTO.nome, gp.nome as nome_aparelho FROM ALUNO a
+       EQUIPAMENTO.nome as nome_aparelho, gp.nome as grupo_muscular FROM ALUNO a
 JOIN IDENTIFICADOR on a.identificador_id = IDENTIFICADOR.id
 JOIN IDENTIFICACAO ON IDENTIFICADOR.identificacao_id = IDENTIFICACAO.id
 JOIN PLANO_TREINO pt ON a.id = pt.id
