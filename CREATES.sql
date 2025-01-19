@@ -1,4 +1,4 @@
-USE academia;
+USE sakila;
 CREATE TABLE UNIDADE (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
@@ -92,16 +92,10 @@ CREATE TABLE PLANO_TREINO (
     carga INT,
     aluno_id INT NOT NULL,
     ativo bool,
-    FOREIGN KEY (exercicio_id) REFERENCES EXERCICIO(id),
-    FOREIGN KEY (aluno_id) REFERENCES ALUNO(id)
-);
-
-CREATE TABLE HISTORICO_TREINO (
-    id INT AUTO_INCREMENT PRIMARY KEY ,
     data_inicio DATETIME,
     data_fim DATETIME,
-    plano_treino_id int NOT NULL,
-    FOREIGN KEY (plano_treino_id) REFERENCES PLANO_TREINO(id)
+    FOREIGN KEY (exercicio_id) REFERENCES EXERCICIO(id),
+    FOREIGN KEY (aluno_id) REFERENCES ALUNO(id)
 );
 
 CREATE TABLE RESERVA (
@@ -120,7 +114,17 @@ CREATE TABLE HISTORICO_PAGAMENTO (
     data_vencimento DATE NOT NULL,
     metodo_pagamento varchar(30),
     aluno_id INT NOT NULL,
-    FOREIGN KEY (aluno_id) REFERENCES ALUNO(id)
+    plano_id INT NOT NULL,
+    FOREIGN KEY (aluno_id) REFERENCES ALUNO(id),
+    FOREIGN KEY (plano_id) REFERENCES PLANO(id)
+);
+
+CREATE TABLE DIETA(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome varchar(30),
+    objetivo text,
+    descricao text,
+    tempo_recomendado int
 );
 
 CREATE TABLE HISTORICO_AVALIACAO(
@@ -128,9 +132,10 @@ CREATE TABLE HISTORICO_AVALIACAO(
     peso DECIMAL(10,2),
     gordura_corporal DECIMAL(10,2),
     musculo_esqueletico DECIMAL(10,2),
-    tipo_dieta varchar(20),
+    tipo_dieta int,
     aluno_id int NOT NULL,
-    funcionario_id int NOT NULL,
+    nutri_id int NOT NULL,
     FOREIGN KEY (aluno_id) REFERENCES ALUNO(id),
-    FOREIGN KEY (funcionario_id) REFERENCES FUNCIONARIO(id)
+    FOREIGN KEY (nutri_id) REFERENCES FUNCIONARIO(id),
+    FOREIGN KEY (tipo_dieta) REFERENCES DIETA(id)
 )

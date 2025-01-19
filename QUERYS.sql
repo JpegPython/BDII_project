@@ -53,7 +53,7 @@ ORDER BY mes_ano DESC;
 -- 7. Listar os 5 funcionários que realizaram mais avaliações físicas
 SELECT i.nome AS funcionario_nome, COUNT(ha.id) AS total_avaliacoes
 FROM HISTORICO_AVALIACAO ha
-JOIN FUNCIONARIO f ON ha.funcionario_id = f.id
+JOIN FUNCIONARIO f ON ha.nutri_id = f.id
 JOIN IDENTIFICACAO i ON f.identificador_id = i.id
 GROUP BY i.nome
 ORDER BY total_avaliacoes DESC
@@ -82,7 +82,7 @@ SELECT i.nome AS funcionario_nome, SUM(hp.valor) AS total_receita
 FROM HISTORICO_PAGAMENTO hp
 JOIN ALUNO a ON hp.aluno_id = a.id
 JOIN HISTORICO_AVALIACAO ha ON a.id = ha.aluno_id
-JOIN FUNCIONARIO f ON ha.funcionario_id = f.id
+JOIN FUNCIONARIO f ON ha.nutri_id = f.id
 JOIN IDENTIFICACAO i ON f.identificador_id = i.id
 WHERE hp.data_pagamento IS NOT NULL
 GROUP BY i.nome
