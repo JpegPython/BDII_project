@@ -22,19 +22,21 @@ JOIN EXERCICIO e ON pt.exercicio_id = e.id
 WHERE idf.ativo = true;
 
 CREATE INDEX idx_identificador_ativo ON IDENTIFICADOR(ativo);
+CREATE INDEX idx_identificacao_id ON IDENTIFICADOR(identificacao_id);
+CREATE INDEX idx_plano_id ON PLANO(id);
 CREATE INDEX idx_plano_treino_aluno_id ON PLANO_TREINO(aluno_id);
 CREATE INDEX idx_exercicio_id ON EXERCICIO(id);
-CREATE INDEX idx_plano_id ON PLANO(id);
-
-CREATE INDEX idx_aluno_id ON ALUNO(id);
+CREATE INDEX idx_aluno_identificador_id ON ALUNO(identificador_id);
+CREATE INDEX idx_aluno_plano_id ON ALUNO(plano_id);
 
 DROP INDEX idx_identificador_ativo ON IDENTIFICADOR;
+DROP INDEX idx_identificacao_id ON IDENTIFICADOR;
+DROP INDEX idx_plano_id ON PLANO;
 DROP INDEX idx_plano_treino_aluno_id ON PLANO_TREINO;
 DROP INDEX idx_exercicio_id ON EXERCICIO;
-DROP INDEX idx_plano_id ON PLANO;
-DROP INDEX idx_aluno_id ON ALUNO;
+DROP INDEX idx_aluno_identificador_id ON ALUNO;
+DROP INDEX idx_aluno_plano_id ON ALUNO;
 
 
-SHOW CREATE TABLE PLANO_TREINO;
 
 

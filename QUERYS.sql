@@ -60,7 +60,7 @@ ORDER BY total_avaliacoes DESC
 LIMIT 5;
 
 
--- 8. Média de alunos inscritos por plano
+-- 8. Média de alunos inscritos por plano -- percentual
 SELECT p.nome AS plano_nome, COUNT(a.id) AS total_alunos, ROUND(COUNT(a.id) / (SELECT COUNT(*) FROM PLANO), 2) AS media_por_plano
 FROM PLANO p
 LEFT JOIN ALUNO a ON p.id = a.plano_id
