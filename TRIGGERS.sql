@@ -16,6 +16,7 @@ DELIMITER ;
 
 DELIMITER //
 
+-- alteração pós aula
 CREATE TRIGGER bloqueia_exclusao_aluno_pendente
 BEFORE DELETE ON ALUNO
 FOR EACH ROW
